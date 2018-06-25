@@ -179,11 +179,11 @@ test = read_dataset('data/test_dataset.csv', [1], scaler)
 
 #General variables
 time_step = 6
-len_day = 288 #len_day in terms of 5 minutes
+len_day = 33 #len_day in terms of 5 minutes
 # epochs = 500
 batch_size = 32
 units = 32
-validation_split = 0.2
+validation_split = 0.5
 
 #Create datasets
 trainX, trainY = create_dataset(train, time_step)
@@ -259,9 +259,13 @@ predictedTestNaniGru, testNaniGru, data_test_mse[5,i], data_test_mae[5,i] = flow
 #For graphing purposes
 start = (int)(len_day - 6)
 end = (int)(2*len_day)
-timeAxis = [datetime.datetime(year=2016, month=3, day=2, hour=0, minute=0) + datetime.timedelta(minutes=5*i) for i in range(0,end)]
+timeAxis = [datetime.datetime(year=2016, month=3, day=2, hour=0, minute=0) + datetime.timedelta(minutes=13.71*i) for i in range(0,end)]
 true = np.transpose(testLstm)
+print(len(true))
 true = true[start:start+end]
+print('enddddd')
+print(start)
+print(end)
 pred1 = predictedTestLstm[start:start+end]
 pred2 = predictedTestGru[start:start+end]
 pred3 = predictedTestNanLstm[start:start+end]
